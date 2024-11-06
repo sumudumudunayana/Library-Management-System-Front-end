@@ -1,1 +1,39 @@
-<p>manage-books-page works!</p>
+<div class="manage-book-container">
+    <h2>Manage Books</h2>
+  
+    <!-- Search Bar -->
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Search by title"
+      class="search-input"
+    />
+  
+    <!-- Book List -->
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Genre</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of filteredBooks">
+          <td>{{ book.title }}</td>
+          <td>{{ book.author }}</td>
+          <td>{{ book.genre }}</td>
+          <td>
+            <button (click)="deleteBook(book.id)" class="delete-button">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- No Books Found Message -->
+    <div *ngIf="filteredBooks.length === 0" class="no-books-message">
+      No books found.
+    </div>
+  </div>
+  

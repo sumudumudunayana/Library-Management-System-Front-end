@@ -1,1 +1,12 @@
-<p>nav-bar works!</p>
+<nav class="navbar">
+    <div class="navbar-brand">Library Management</div>
+    <button class="navbar-toggler" (click)="toggleNavbar()">☰</button>
+    <div class="navbar-links" [ngClass]="{ 'active': isNavbarOpen }">
+      <a routerLink="AddBooks" routerLinkActive="active">Add Books</a>
+      <a routerLink="ManageBooks" routerLinkActive="active">Manage Books</a>
+      <a routerLink="/users" routerLinkActive="active">Users</a>
+      <a routerLink="/about" routerLinkActive="active">About</a>
+      <a routerLink="/contact" routerLinkActive="active">Contact</a>
+    </div>
+  </nav>
+  
