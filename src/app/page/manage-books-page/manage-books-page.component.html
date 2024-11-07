@@ -1,39 +1,73 @@
 <div class="manage-book-container">
     <h2>Manage Books</h2>
   
-    <!-- Search Bar -->
-    <input
-      type="text"
-      [(ngModel)]="searchTerm"
-      placeholder="Search by title"
-      class="search-input"
-    />
-  
-    <!-- Book List -->
     <table>
       <thead>
         <tr>
+          <th>Count</th>
+          <th>Book Id</th>
           <th>Title</th>
           <th>Author</th>
-          <th>Genre</th>
-          <th>Actions</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Qty</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let book of filteredBooks">
-          <td>{{ book.title }}</td>
-          <td>{{ book.author }}</td>
-          <td>{{ book.genre }}</td>
+        <tr *ngFor="let book of bookList; index as i">
+          <td>{{ i + 1 }}</td>
+          <td>{{ book.bookId }}</td>
+          <td>{{ book.bookName }}</td>
+          <td>{{ book.bookAuthor }}</td>
+          <td>{{ book.bookCategory }}</td>
+          <td>{{ book.bookPrice }}</td>
+          <td>{{ book.bookQty }}</td>
           <td>
-            <button (click)="deleteBook(book.id)" class="delete-button">Delete</button>
+            <button (click)="deleteBook(book.bookId)" class="delete-button">Delete</button>
+          </td>
+          <td>
+            <button (click)="updateBook(book)" class="update-button" data-bs-toggle="modal" data-bs-target="#exampleModal">Update</button>
           </td>
         </tr>
       </tbody>
     </table>
   
-    <!-- No Books Found Message -->
-    <div *ngIf="filteredBooks.length === 0" class="no-books-message">
-      No books found.
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Update Customer</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Title:</label>
+            <input type="text" class="form-control" [(ngModel)]="bookTemp.bookName"  id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Author:</label>
+            <input type="text" class="form-control" [(ngModel)]="bookTemp.bookAuthor" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Category:</label>
+            <input type="text" class="form-control" [(ngModel)]="bookTemp.bookCategory"  id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Price:</label>
+            <input type="text" class="form-control" [(ngModel)]="bookTemp.bookPrice" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Qty:</label>
+            <input type="text" class="form-control" [(ngModel)]="bookTemp.bookQty"  id="recipient-name">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="saveBook()" data-bs-dismiss="modal">Update</button>
+      </div>
     </div>
   </div>
+</div>
   

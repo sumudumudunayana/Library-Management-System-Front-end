@@ -1,42 +1,54 @@
+import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
-interface Book {
-  id: number;
-  title: string;
-  author: string;
-  genre: string;
-}
 
 @Component({
   selector: 'app-manage-books-page',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,CommonModule,HttpClientModule],
   templateUrl: './manage-books-page.component.html',
   styleUrl: './manage-books-page.component.css'
 })
 export class ManageBooksPageComponent {
 
-  books: Book[] = [
-    { id: 1, title: 'Angular for Beginners', author: 'John Doe', genre: 'Technology' },
-    { id: 2, title: 'Learning TypeScript', author: 'Jane Smith', genre: 'Programming' },
-    { id: 3, title: 'JavaScript Essentials', author: 'Alice Brown', genre: 'Web Development' }
-  ];
+  public bookList:any = [];
 
-  searchTerm: string = '';
-
-  get filteredBooks(): Book[] {
-    return this.books.filter(book =>
-      book.title.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );
+  constructor(private http: HttpClient) {
+    this.loadTable();
   }
 
-  deleteBook(id: number) {
-    const confirmDelete = confirm('Are you sure you want to delete this book?');
-    if (confirmDelete) {
-      this.books = this.books.filter(book => book.id !== id);
-      alert('Book deleted successfully!');
-    }
+  loadTable(){
+    this.http.get("http://localhost:8080/book/get-all").subscribe(data =>{
+      console.log(data);
+      this.bookList = data;
+    })
+  }
+
+  deleteBook(bookId: number) {
+    this.http.delete(`http://localhost:8080/book/delete-by-id/${bookId}`).subscribe(data => {
+      alert("Book deleted successfully");
+      this.loadTable();
+    })
+  }
+
+  public bookTemp:any = {}
+  updateBook(book:any) {
+    console.log(book);
+    this.bookTemp = book;
+  }
+
+  saveBook(){
+    this.http.put("http://localhost:8080/book/update-book",this.bookTemp).subscribe(data => {
+      alert("Book updated successfully");
+      this.loadTable();
+    })
+  }
+
+  searchTerm(bookId: any) {  
+  }
+
+  filteredBooks(bookId: any) {
   }
 
 }
