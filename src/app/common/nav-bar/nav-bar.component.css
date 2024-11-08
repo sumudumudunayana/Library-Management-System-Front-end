@@ -1,62 +1,73 @@
-/* Base styling */
+
 .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #2380dc;
-    padding: 1rem;
-    color: white;
-  }
-  
-  .navbar-brand {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 10px;
+  background-color: #436588;
+  color: #ecf0f1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbar-brand {
+  font-size: 1.5em;
+  color:#ecf0f1;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  gap: 20px;
+}
+
+.navbar-links li {
+  position: relative;
+}
+
+.navbar-links a {
+  color: #ecf0f1;
+  text-decoration: none;
+  font-size: 1em;
+  padding: 8px 15px;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.navbar-links a:hover,
+.navbar-links a.active {
+  background-color:#2980b9;
+  color: white;
+  border-radius: 4px;
+}
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.navbar-user span {
+  color:#ecf0f1;
+  font-size: 0.9em;
+}
+
+
+
+@media (max-width: 768px) {
   .navbar-links {
-    display: flex;
-    gap: 1rem;
-  }
-  
-  .navbar-links a {
-    color: white;
-    text-decoration: none;
-    padding: 0.5rem;
-    transition: color 0.3s;
-  }
-  
-  .navbar-links a.active,
-  .navbar-links a:hover {
-    color: #17a2b8;
-  }
-  
-  /* Toggler button for mobile view */
-  .navbar-toggler {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: white;
-  }
-  
-  /* Responsive behavior */
-  @media (max-width: 768px) {
-    .navbar-links {
       display: none;
-      flex-direction: column;
-      width: 100%;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background-color: #195b9c;
-    }
-  
-    .navbar-links.active {
-      display: flex;
-    }
-  
-    .navbar-toggler {
-      display: inline;
-    }
   }
-  
+
+  .top-navbar {
+      flex-direction: column;
+  }
+
+  .navbar-user {
+      margin-top: 10px;
+  }
+}

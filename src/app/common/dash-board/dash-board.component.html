@@ -1,0 +1,40 @@
+<div class="dashboard-container">
+    <header class="dashboard-header">
+        <h1>📚 Library Dashboard</h1>
+        <p>Welcome back! Here’s an overview of the library's current status.</p>
+    </header>
+
+    <div class="dashboard-cards">
+        <div class="card card-total-books">
+            <h3>Total Books</h3>
+            <p>{{ totalBooks }}</p>
+        </div>
+        <div class="card card-books-borrowed">
+            <h3>Books Borrowed</h3>
+            <p>{{ booksBorrowed }}</p>
+        </div>
+        <div class="card card-books-available">
+            <h3>Books Available</h3>
+            <p>{{ booksAvailable }}</p>
+        </div>
+    </div>
+
+    <div class="dashboard-content">
+        <section class="dashboard-section">
+            <h2>📈 Recent Activity</h2>
+            <ul>
+                <li *ngFor="let activity of recentActivities">{{ activity }}</li>
+            </ul>
+        </section>
+
+        <section class="dashboard-section">
+            <h2>🏆 Statistics</h2>
+            <div class="stat-card">
+                <strong>Most Borrowed Book:</strong> {{ mostBorrowedBook }}
+            </div>
+            <div class="stat-card">
+                <strong>Most Active Member:</strong> {{ mostActiveMember }}
+            </div>
+        </section>
+    </div>
+</div>

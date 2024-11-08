@@ -45,10 +45,4 @@ export class ManageBooksPageComponent {
     })
   }
 
-  searchTerm(bookId: any) {  
-  }
-
-  filteredBooks(bookId: any) {
-  }
-
 }

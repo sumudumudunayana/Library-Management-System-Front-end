@@ -1,9 +1,9 @@
-.manage-book-container {
-    max-width: 800px;
+.manage-member-container {
+    max-width: 1000px;
     margin: 0 auto;
     padding: 2rem;
     border: 10px solid #ddd;
-    border-radius: 8px;
+    border-radius: 10px;
     background-color: #f9f9f9;
   }
   
