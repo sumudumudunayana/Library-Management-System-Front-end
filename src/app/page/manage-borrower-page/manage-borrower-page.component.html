@@ -1,0 +1,61 @@
+<div class="manage-borrower-container">
+    <h2>Manage Borrowers</h2>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Count</th>
+          <th>Borrower Id</th>
+          <th>Member Id</th>
+          <th>Book Id</th>
+          <th>Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let borrower of borrowerList; index as i">
+          <td>{{ i + 1 }}</td>
+          <td>{{ borrower.borrowerId }}</td>
+          <td>{{ borrower.membersId }}</td>
+          <td>{{ borrower.booksId }}</td>
+          <td>{{ borrower.duration }}</td>
+          <td>
+            <button (click)="deleteBorrower(borrower.borrowerId)" class="delete-button">Delete</button>
+          </td>
+          <td>
+            <button (click)="updateBorrower(borrower)" class="update-button" data-bs-toggle="modal" data-bs-target="#exampleModal">Update</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Update Borrower</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Member Id :</label>
+            <input type="text" class="form-control" [(ngModel)]="borrowerTemp.bookName"  id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Book Id :</label>
+            <input type="text" class="form-control" [(ngModel)]="borrowerTemp.bookAuthor" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Duration :</label>
+            <input type="text" class="form-control" [(ngModel)]="borrowerTemp.bookCategory"  id="recipient-name">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="saveBorrower()" data-bs-dismiss="modal">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+  

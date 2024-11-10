@@ -1,0 +1,42 @@
+<div class="add-borrower-container">
+    <h2>Add a New Borrower</h2>
+    <form #bookForm="ngForm">
+      <div class="form-group">
+        <label for="title">Member Id</label>
+        <input
+          type="text"
+          id="membersId"
+          name="membersId"
+          [(ngModel)]="borrower.membersId"
+          required
+          placeholder="Enter your member ID"
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="category">Book Id</label>
+        <input
+          type="text"
+          id="booksId"
+          name="booksId"
+          [(ngModel)]="borrower.booksId"
+          required
+          placeholder="Enter the book id"
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="author">Duration</label>
+        <input
+          type="text"
+          id="duration"
+          name="duration"
+          [(ngModel)]="borrower.duration"
+          required
+          placeholder="How many days"
+        />
+      </div>
+
+      <button type="submit" [disabled]="bookForm.invalid" (click)="onSubmit()">Add Borrower</button>
+    </form>
+  </div>

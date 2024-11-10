@@ -1,0 +1,65 @@
+.manage-borrower-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    border: 10px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  
+  th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #436588;
+    color: white;
+  }
+  
+  .delete-button {
+    padding: 0.5rem 1rem;
+    color: white;
+    background-color: #dc3545;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .update-button {
+    padding: 0.5rem 1rem;
+    color: white;
+    background-color: #00a223;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .delete-button:hover {
+    background-color: #cc4a57;
+  }
+
+  .update-button:hover {
+    background-color: #0ae05f;
+  }
+  
+  .no-books-message {
+    text-align: center;
+    color: #777;
+    font-style: italic;
+    margin-top: 1rem;
+  }
+  
