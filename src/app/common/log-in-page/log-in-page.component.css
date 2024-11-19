@@ -1,12 +1,13 @@
 
 
 .login-container {
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    height: 85vh;
-    background-color: #f0f4f8;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+  background-image: linear-gradient(to bottom, #c992e4, #a737de);
+}
+
   
 
   .login-card {

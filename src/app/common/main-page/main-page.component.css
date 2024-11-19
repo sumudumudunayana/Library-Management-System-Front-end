@@ -1,5 +1,4 @@
-/* From Uiverse.io by satyamchaudharydev */ 
-/* === removing default button style ===*/
+
 .button {
     margin: 0;
     height: auto;
@@ -13,7 +12,7 @@
 
   .button {
     --border-right: 10px;
-    --text-stroke-color: rgba(255, 255, 255, 0.6);
+    --text-stroke-color: rgb(255, 255, 255);
     --animation-color: #ffffff;
     --fs-size: 15.5em;
     letter-spacing: 3px;
@@ -102,7 +101,7 @@
     margin: 0;
     width: 3rem;
     height: 3rem;
-    background: #0bf59b;
+    background: #c800ff;
     border-radius: 1.625rem;
    }
    

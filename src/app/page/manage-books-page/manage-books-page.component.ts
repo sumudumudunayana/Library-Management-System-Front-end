@@ -12,6 +12,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class ManageBooksPageComponent {
 
+  public searchQuery: string = '';
+
   public bookList:any = [];
 
   constructor(private http: HttpClient) {
@@ -45,4 +47,43 @@ export class ManageBooksPageComponent {
     })
   }
 
+  searchBook(searchQuery: string) {
+    if (!searchQuery || searchQuery.trim() === '') {
+      this.loadTable();
+      return;
+    }
+    const bookId = parseInt(searchQuery);
+
+    if (isNaN(bookId)) {
+      alert("Please enter a valid numeric ID");
+      return;
+    }
+
+    this.http.get(`http://localhost:8080/book/search-by-id/${bookId}`)
+      .subscribe({
+        next: (response: any) => {
+          console.log('Search response:', response);
+          if (response) {
+            this.bookList = [response];
+          } else {
+            this.bookList = [];
+            alert("No book found with this ID");
+          }
+        },
+        error: (error) => {
+          console.log('Error details:', error);
+          if (error.status === 404) {
+            this.bookList = [];
+            alert("No book found with this ID");
+          } else {
+            this.bookList = [];
+            alert(`Error: ${error.message || 'Something went wrong'}`);
+          }
+        }
+      });
+  }
+  
+  
+
 }
+

@@ -1,56 +1,59 @@
-<div class="add-member-container">
-    <h2>Add a New Member</h2>
-    <form #bookForm="ngForm">
-      <div class="form-group">
-        <label for="title">Name</label>
-        <input
-          type="text"
-          id="memberName"
-          name="memberName"
-          [(ngModel)]="member.memberName"
-          required
-          placeholder="Enter your name"
-        />
-      </div>
-  
-      <div class="form-group">
-        <label for="category">Email</label>
-        <input
-          type="text"
-          id="memberEmail"
-          name="memberEmail"
-          [(ngModel)]="member.memberEmail"
-          required
-          placeholder="Enter your Email"
-        />
-      </div>
-  
-      <div class="form-group">
-        <label for="author">Phone Number</label>
-        <input
-          type="text"
-          id="memberPhone"
-          name="memberPhone"
-          [(ngModel)]="member.memberPhone"
-          required
-          placeholder="Enter phone number"
-        />
-      </div>
-  
-      <div class="form-group">
-        <label for="price">Address</label>
-        <input
-          type="text"
-          id="memberAddress"
-          name="memberAddress"
-          [(ngModel)]="member.memberAddress"
-          required
-          placeholder="Enter Address"
-        />
-      </div>
 
+  <body class="background">
+    <div class="add-member-container">
+      <h2>Add a New Member</h2>
+      <form #bookForm="ngForm">
+        <div class="form-group">
+          <label for="title">Name</label>
+          <input
+            type="text"
+            id="memberName"
+            name="memberName"
+            [(ngModel)]="member.memberName"
+            required
+            placeholder="Enter your name"
+          />
+        </div>
+    
+        <div class="form-group">
+          <label for="category">Email</label>
+          <input
+            type="text"
+            id="memberEmail"
+            name="memberEmail"
+            [(ngModel)]="member.memberEmail"
+            required
+            placeholder="Enter your Email"
+          />
+        </div>
+    
+        <div class="form-group">
+          <label for="author">Phone Number</label>
+          <input
+            type="text"
+            id="memberPhone"
+            name="memberPhone"
+            [(ngModel)]="member.memberPhone"
+            required
+            placeholder="Enter phone number"
+          />
+        </div>
+    
+        <div class="form-group">
+          <label for="price">Address</label>
+          <input
+            type="text"
+            id="memberAddress"
+            name="memberAddress"
+            [(ngModel)]="member.memberAddress"
+            required
+            placeholder="Enter Address"
+          />
+        </div>
   
-      <button type="submit" [disabled]="bookForm.invalid" (click)="onSubmit()">Add member</button>
-    </form>
-  </div>
-
+    
+        <button type="submit" [disabled]="bookForm.invalid" (click)="onSubmit()">Add member</button>
+      </form>
+    </div>
+  </body>
+  

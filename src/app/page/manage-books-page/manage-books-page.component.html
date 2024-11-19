@@ -1,16 +1,31 @@
-<div class="manage-book-container">
+
+
+<body class="background">
+  <div class="manage-book-container">
     <h2>Manage Books</h2>
-  
+    
+    <div class="search">
+      <input
+      placeholder="Search By Id..."
+      type="text"
+      [(ngModel)]="searchQuery"
+      (keyup.enter)="searchBook(searchQuery)" />
+        <button type="submit" (click)="searchBook(searchQuery)">Go</button>
+      </div>
+    
+
     <table>
       <thead>
         <tr>
           <th>Count</th>
-          <th>Book Id</th>
+          <th>Id</th>
           <th>Title</th>
           <th>Author</th>
           <th>Category</th>
           <th>Price</th>
           <th>Qty</th>
+          <th>Delete</th>
+          <th>Update</th>
         </tr>
       </thead>
       <tbody>
@@ -32,8 +47,6 @@
       </tbody>
     </table>
   
-
-
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -70,4 +83,5 @@
     </div>
   </div>
 </div>
-  
+  </div>
+</body>
