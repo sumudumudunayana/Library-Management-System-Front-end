@@ -9,11 +9,13 @@ import { ManageMembersPageComponent } from './page/manage-members-page/manage-me
 import { DashBoardComponent } from './common/dash-board/dash-board.component';
 import { AddBorrowerPageComponent } from './page/add-borrower-page/add-borrower-page.component';
 import { ManageBorrowerPageComponent } from './page/manage-borrower-page/manage-borrower-page.component';
+import { LogInPageComponent } from './common/log-in-page/log-in-page.component';
+import { MainPageComponent } from './common/main-page/main-page.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,AddBooksPageComponent,NavBarComponent,ManageBooksPageComponent,CommonModule,AddMembersPageComponent,ManageMembersPageComponent,DashBoardComponent,AddBorrowerPageComponent,ManageBorrowerPageComponent],
+  imports: [RouterOutlet,AddBooksPageComponent,NavBarComponent,ManageBooksPageComponent,CommonModule,AddMembersPageComponent,ManageMembersPageComponent,DashBoardComponent,AddBorrowerPageComponent,ManageBorrowerPageComponent,LogInPageComponent,MainPageComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
