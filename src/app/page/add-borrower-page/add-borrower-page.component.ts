@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-borrower-page',
@@ -22,7 +23,7 @@ export class AddBorrowerPageComponent {
 
   public onSubmit() {
     this.http.post("http://localhost:8080/borrower/add-borrower",this.borrower).subscribe((data)=>{
-      alert("Borrower added successfully");
+      this.successAlert();
       this.resetForm();
     });
 
@@ -34,6 +35,14 @@ export class AddBorrowerPageComponent {
       booksId:'',
       duration:'',
     };
+  }
+
+  public successAlert(){
+    Swal.fire({
+      title: "The Borrower Added Successfully?",
+      icon: "success",
+      background:"#fff",
+    });
   }
 
 }

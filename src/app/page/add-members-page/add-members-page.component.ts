@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-members-page',
@@ -23,7 +24,7 @@ export class AddMembersPageComponent {
 
   public onSubmit(){
     this.http.post("http://localhost:8080/member/add-member",this.member).subscribe((data)=>{
-      alert("Member added successfully");
+     this.successAlert();
       this.resetForm();
     });
   }
@@ -35,6 +36,14 @@ export class AddMembersPageComponent {
       memberPhone:'',
       memberAddress:'',
     };
+  }
+
+  public successAlert(){
+    Swal.fire({
+      title: "The Member Added Successfully?",
+      icon: "success",
+      background:"#fff",
+    });
   }
 
 }

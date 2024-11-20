@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-manage-books-page',
@@ -29,7 +30,7 @@ export class ManageBooksPageComponent {
 
   deleteBook(bookId: number) {
     this.http.delete(`http://localhost:8080/book/delete-by-id/${bookId}`).subscribe(data => {
-      alert("Book deleted successfully");
+      this.deleteSuccessAlert();
       this.loadTable();
     })
   }
@@ -42,7 +43,7 @@ export class ManageBooksPageComponent {
 
   saveBook(){
     this.http.put("http://localhost:8080/book/update-book",this.bookTemp).subscribe(data => {
-      alert("Book updated successfully");
+      this.updateSuccessAlert();
       this.loadTable();
     })
   }
@@ -55,7 +56,7 @@ export class ManageBooksPageComponent {
     const bookId = parseInt(searchQuery);
 
     if (isNaN(bookId)) {
-      alert("Please enter a valid numeric ID");
+      this.errorAlert();
       return;
     }
 
@@ -67,23 +68,43 @@ export class ManageBooksPageComponent {
             this.bookList = [response];
           } else {
             this.bookList = [];
-            alert("No book found with this ID");
+            this.noBookErrorAlert();
           }
-        },
-        error: (error) => {
-          console.log('Error details:', error);
-          if (error.status === 404) {
-            this.bookList = [];
-            alert("No book found with this ID");
-          } else {
-            this.bookList = [];
-            alert(`Error: ${error.message || 'Something went wrong'}`);
-          }
-        }
+        }, 
       });
   }
-  
-  
+
+  public deleteSuccessAlert(){
+    Swal.fire({
+      title: "The Book Deleted Successfully?",
+      icon: "success",
+      background:"#fff",
+    });
+  }
+
+  public updateSuccessAlert(){
+    Swal.fire({
+      title: "The Book Updated Successfully?",
+      icon: "success",
+      background:"#fff",
+    });
+  }
+
+  public errorAlert(){
+    Swal.fire({
+      title: "Please enter a valid numeric ID",
+      icon: "error",
+      background:"#fff",
+    });
+  }
+
+  public noBookErrorAlert(){
+    Swal.fire({
+      title: "No book found with this ID",
+      icon: "question",
+      background:"#fff",
+    });
+  }
 
 }
 

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-manage-members-page',
@@ -11,6 +12,8 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './manage-members-page.component.css'
 })
 export class ManageMembersPageComponent {
+
+  public searchQuery: string = '';
 
   public memberList:any = [];
 
@@ -28,7 +31,7 @@ export class ManageMembersPageComponent {
 
   deleteMember(memberId:number){
     this.http.delete(`http://localhost:8080/member/deleteMember-by-id/${memberId}`).subscribe(data => {
-      alert("Member deleted successfully");
+      this.deleteSuccessAlert();
       this.loadTable();
     })
   }
@@ -41,9 +44,71 @@ export class ManageMembersPageComponent {
 
   saveMember(){
     this.http.put("http://localhost:8080/member/update-member",this.memberTemp).subscribe(data => {
-      alert("Member updated successfully");
+      this.updateSuccessAlert();
       this.loadTable();
     })
   }
+
+
+  searchMember(searchQuery: string) {
+    if (!searchQuery || searchQuery.trim() === '') {
+      this.loadTable();
+      return;
+    }
+    const memberId = parseInt(searchQuery);
+
+    if (isNaN(memberId)) {
+      this.errorAlert();
+      return;
+    }
+
+    this.http.get(`http://localhost:8080/member/searchMember-by-id/${memberId}`)
+      .subscribe({
+        next: (response: any) => {
+          console.log('Search response:', response);
+          if (response) {
+            this.memberList = [response];
+          } else {
+            this.memberList = [];
+            this.noBookErrorAlert();
+          }
+        },
+      });
+  }
+
+
+  public deleteSuccessAlert(){
+    Swal.fire({
+      title: "The Member Deleted Successfully?",
+      icon: "success",
+      background:"#fff",
+    });
+  }
+
+  public updateSuccessAlert(){
+    Swal.fire({
+      title: "The Member Updated Successfully?",
+      icon: "success",
+      background:"#fff",
+    });
+  }
+
+  public errorAlert(){
+    Swal.fire({
+      title: "Please enter a valid numeric ID",
+      icon: "error",
+      background:"#fff",
+    });
+  }
+
+  public noBookErrorAlert(){
+    Swal.fire({
+      title: "No Member found with this ID",
+      icon: "question",
+      background:"#fff",
+    });
+  }
+
+
 
 }

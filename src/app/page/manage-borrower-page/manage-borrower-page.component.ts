@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-manage-borrower-page',
@@ -11,6 +12,8 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './manage-borrower-page.component.css'
 })
 export class ManageBorrowerPageComponent {
+
+  public searchQuery: string = '';
 
   public borrowerList:any = [];
 
@@ -27,7 +30,7 @@ export class ManageBorrowerPageComponent {
 
   deleteBorrower(borrowerId: number) {
     this.http.delete(`http://localhost:8080/borrower/delete-by-id/${borrowerId}`).subscribe(data => {
-      alert("Book deleted successfully");
+      this.deleteSuccessAlert();
       this.loadTable();
     })
   }
@@ -39,10 +42,70 @@ export class ManageBorrowerPageComponent {
   }
 
   saveBorrower(){
-    this.http.put("http://localhost:8080/book/update-book",this.borrowerTemp).subscribe(data => {
-      alert("Borrower updated successfully");
+    this.http.put("http://localhost:8080/borrower/update-borrower",this.borrowerTemp).subscribe(data => {
+      this.updateSuccessAlert();
       this.loadTable();
     })
+  }
+
+
+  searchBorrower(searchQuery: string) {
+    if (!searchQuery || searchQuery.trim() === '') {
+      this.loadTable();
+      return;
+    }
+    const borrowerId = parseInt(searchQuery);
+
+    if (isNaN(borrowerId)) {
+      this.errorAlert();
+      return;
+    }
+
+    this.http.get(`http://localhost:8080/borrower/search-by-id/${borrowerId}`)
+      .subscribe({
+        next: (response: any) => {
+          console.log('Search response:', response);
+          if (response) {
+            this.borrowerList = [response];
+          } else {
+            this.borrowerList = [];
+            this.noBookErrorAlert();
+          }
+        },
+      });
+  }
+
+
+  public deleteSuccessAlert(){
+    Swal.fire({
+      title: "The Borrower Deleted Successfully?",
+      icon: "success",
+      background:"#fff",
+    });
+  }
+
+  public updateSuccessAlert(){
+    Swal.fire({
+      title: "The Borrower Updated Successfully?",
+      icon: "success",
+      background:"#fff",
+    });
+  }
+
+  public errorAlert(){
+    Swal.fire({
+      title: "Please enter a valid numeric ID",
+      icon: "error",
+      background:"#fff",
+    });
+  }
+
+  public noBookErrorAlert(){
+    Swal.fire({
+      title: "No Borrower found with this ID",
+      icon: "question",
+      background:"#fff",
+    });
   }
 
 

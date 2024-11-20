@@ -1,6 +1,5 @@
-
 .navbar {
-  background-image: url('/library4.jpg');
+  background-image: url("/library4.jpg");
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -15,7 +14,7 @@
 
 .navbar-brand {
   font-size: 1.5em;
-  color:#ecf0f1;
+  color: #ecf0f1;
   text-decoration: none;
   font-weight: bold;
 }
@@ -41,7 +40,7 @@
 
 .navbar-links a:hover,
 .navbar-links a.active {
-  background-color:#2980b9;
+  background-color: #2980b9;
   color: white;
   border-radius: 4px;
 }
@@ -53,22 +52,20 @@
 }
 
 .navbar-user span {
-  color:#ecf0f1;
+  color: #ecf0f1;
   font-size: 0.9em;
 }
 
-
-
 @media (max-width: 768px) {
   .navbar-links {
-      display: none;
+    display: none;
   }
 
   .top-navbar {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .navbar-user {
-      margin-top: 10px;
+    margin-top: 10px;
   }
 }

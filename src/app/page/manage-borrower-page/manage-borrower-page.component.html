@@ -2,6 +2,15 @@
 <body class="background">
   <div class="manage-borrower-container">
     <h2>Manage Borrowers</h2>
+
+    <div class="search">
+      <input
+      placeholder="Search By Id..."
+      type="text"
+      [(ngModel)]="searchQuery"
+      (keyup.enter)="searchBorrower(searchQuery)" />
+        <button type="submit" (click)="searchBorrower(searchQuery)">Go</button>
+      </div>
   
     <table>
       <thead>
@@ -44,15 +53,15 @@
       <div class="modal-body">
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Member Id :</label>
-            <input type="text" class="form-control" [(ngModel)]="borrowerTemp.bookName"  id="recipient-name">
+            <input type="text" class="form-control" [(ngModel)]="borrowerTemp.membersId"  id="recipient-name">
           </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Book Id :</label>
-            <input type="text" class="form-control" [(ngModel)]="borrowerTemp.bookAuthor" id="recipient-name">
+            <input type="text" class="form-control" [(ngModel)]="borrowerTemp.booksId" id="recipient-name">
           </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Duration :</label>
-            <input type="text" class="form-control" [(ngModel)]="borrowerTemp.bookCategory"  id="recipient-name">
+            <input type="text" class="form-control" [(ngModel)]="borrowerTemp.duration"  id="recipient-name">
           </div>
       </div>
       <div class="modal-footer">
