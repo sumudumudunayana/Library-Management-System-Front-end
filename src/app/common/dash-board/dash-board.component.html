@@ -1,8 +1,7 @@
 <body class="background">
   <div class="dashboard-container">
     <header class="dashboard-header">
-      <h1>📚 Library Dashboard</h1>
-      <p>Welcome back! Here’s an overview of the library's current status.</p>
+      <h1>📚 BOOKNEST DASHBOARD</h1>
     </header>
 
     <div class="dashboard-cards">
@@ -20,23 +19,64 @@
       </div>
     </div>
 
-    <div class="dashboard-content">
-      <section class="dashboard-section">
-        <h2>📈 Recent Activity</h2>
-        <ul>
-          <li *ngFor="let activity of recentActivities">{{ activity }}</li>
-        </ul>
-      </section>
+    <div class="card-container">
+      <div class="cards">
+        <button
+          class="red-btn"
+          type="submit"
+          (click)="onAddBooksClick()"
+          routerLink="app-add-books-page"
+        >
+          ADD BOOKS
+        </button>
 
-      <section class="dashboard-section">
-        <h2>🏆 Statistics</h2>
-        <div class="stat-card">
-          <strong>Most Borrowed Book:</strong> {{ mostBorrowedBook }}
-        </div>
-        <div class="stat-card">
-          <strong>Most Active Member:</strong> {{ mostActiveMember }}
-        </div>
-      </section>
+        <button
+          class="blue-btn"
+          type="submit"
+          (click)="onManageBooksClick()"
+          routerLink="app-manage-books-page"
+        >
+          MANAGE BOOKS
+        </button>
+      </div>
+      <div class="cards">
+        <button
+          class="red-btn"
+          type="submit"
+          (click)="onAddMembersClick()"
+          routerLink="app-add-members-page"
+        >
+          ADD MEMBERS
+        </button>
+
+        <button
+          class="blue-btn"
+          type="submit"
+          (click)="onManageMembersClick()"
+          routerLink="app-manage-members-page"
+        >
+          MANAGE MEMBERS
+        </button>
+      </div>
+      <div class="cards">
+        <button
+          class="red-btn"
+          type="submit"
+          (click)="onAddBorrowersClick()"
+          routerLink="app-add-borrower-page"
+        >
+          ADD BORROWERS
+        </button>
+
+        <button
+          class="blue-btn"
+          type="submit"
+          (click)="onManageBorrowersClick()"
+          routerLink="app-manage-borrower-page"
+        >
+          MANAGE BORROWERS
+        </button>
+      </div>
     </div>
   </div>
 </body>

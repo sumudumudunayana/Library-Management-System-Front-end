@@ -2,7 +2,6 @@
   background-image: linear-gradient(to bottom, #c992e4, #a737de);
   height: 100vh;
   width: 100%;
-  position: sticky;
   top: 0;
   left: 0;
   z-index: -1;
@@ -104,3 +103,88 @@ li::before {
   content: "📖";
   margin-right: 10px;
 }
+
+
+
+
+
+  .card-container {
+    margin-top: 30px;
+    display: flex; 
+    gap: 50px; 
+    justify-content: center; 
+  }
+
+
+.cards {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .red-btn {
+    width: 300px;
+    height: 150px;
+    margin: 15px;
+    background: rgb(255, 0, 0);
+    background: rgb(131, 58, 180);
+    background: linear-gradient(
+      90deg,
+      rgba(131, 58, 180, 1) 0%,
+      rgb(225, 68, 68) 50%,
+      rgb(255, 149, 0) 100%
+    );
+    color: white;
+    border: none;
+    border-radius: 0.625em;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .blue-btn {
+    width: 300px;
+    height: 150px;
+    margin: 15px;
+    background: rgb(0, 8, 144);
+    background: linear-gradient(
+      90deg,
+      rgba(0, 8, 144, 1) 0%,
+      rgba(16, 0, 255, 1) 22%,
+      rgba(86, 255, 247, 1) 100%
+    );
+    color: white;
+    border: none;
+    border-radius: 0.625em;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
+  
+  button:hover {
+    color: rgb(0, 0, 0);
+  }
+  
+  button:after {
+    content: "";
+    background: rgb(255, 255, 255);
+    position: absolute;
+    z-index: -1;
+    left: -20%;
+    right: -20%;
+    top: 0;
+    bottom: 0;
+    transform: skewX(-45deg) scale(0, 1);
+    transition: all 0.5s;
+  }
+  
+  button:hover:after {
+    transform: skewX(-45deg) scale(1, 1);
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+  }
+  
