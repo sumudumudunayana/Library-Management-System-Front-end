@@ -1,16 +1,16 @@
 <body class="background">
   <div class="manage-book-container">
     <h2>Manage Books</h2>
-    
+
     <div class="search">
       <input
-      placeholder="Search By Id..."
-      type="text"
-      [(ngModel)]="searchQuery"
-      (keyup.enter)="searchBook(searchQuery)" />
-        <button type="submit" (click)="searchBook(searchQuery)">Go</button>
-      </div>
-    
+        placeholder="Search By Id..."
+        type="text"
+        [(ngModel)]="searchQuery"
+        (keyup.enter)="searchBook(searchQuery)"
+      />
+      <button type="submit" (click)="searchBook(searchQuery)">Go</button>
+    </div>
 
     <table>
       <thead>
@@ -36,50 +36,152 @@
           <td>{{ book.bookPrice }}</td>
           <td>{{ book.bookQty }}</td>
           <td>
-            <button (click)="deleteBook(book.bookId)" class="delete-button">Delete</button>
+            <button (click)="deleteBook(book.bookId)" class="delete-button">
+              Delete
+            </button>
           </td>
           <td>
-            <button (click)="updateBook(book)" class="update-button" data-bs-toggle="modal" data-bs-target="#exampleModal">Update</button>
+            <button
+              (click)="updateBook(book)"
+              class="update-button"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              Update
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
-  
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Update Book</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Title:</label>
-            <input type="text" class="form-control" [(ngModel)]="bookTemp.bookName"  id="recipient-name">
+
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Update Book</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Author:</label>
-            <input type="text" class="form-control" [(ngModel)]="bookTemp.bookAuthor" id="recipient-name">
+
+
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Title:</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="bookTemp.bookName"
+                id="recipient-name"
+                required
+                #bookName="ngModel"
+                
+              />
+              <div *ngIf="bookName.invalid && bookName.touched">
+                <small *ngIf="bookName.errors?.['required']" class="error-text">Title is required.</small>
+              </div>
+            </div>
+
+
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Author:</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="bookTemp.bookAuthor"
+                id="recipient-name"
+                required
+                minlength="2"
+                #bookAuthor="ngModel"
+              />
+              <div *ngIf="bookAuthor.invalid && bookAuthor.touched">
+                <small *ngIf="bookAuthor.errors?.['required']" class="error-text">Author name is required.</small>
+                <small *ngIf="bookAuthor.errors?.['minlength']" class="error-text">Author name must be at least 2 characters long.</small>
+              </div>
+            </div>
+
+
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Category:</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="bookTemp.bookCategory"
+                id="recipient-name"
+                required
+                minlength="4"
+                #bookCategory="ngModel"
+              />
+              <div *ngIf="bookCategory.invalid && bookCategory.touched">
+                <small *ngIf="bookCategory.errors?.['required']" class="error-text">Category is required.</small>
+                <small *ngIf="bookCategory.errors?.['minlength']" class="error-text">Category must be at least 4 characters long.</small>
+              </div>
+            </div>
+
+
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Price:</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="bookTemp.bookPrice"
+                id="recipient-name"
+                required
+                minlength="3"
+                #bookPrice="ngModel"
+              />
+              <div *ngIf="bookPrice.invalid && bookPrice.touched">
+                <small *ngIf="bookPrice.errors?.['required']" class="error-text">Price is required.</small>
+                <small *ngIf="bookPrice.errors?.['minlength']" class="error-text">Price must be at least 3 characters long.</small>
+              </div>
+            </div>
+
+
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Qty:</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="bookTemp.bookQty"
+                id="recipient-name"
+                required
+                #bookQty="ngModel"
+              />
+              <div *ngIf="bookQty.invalid && bookQty.touched">
+                <small *ngIf="bookQty.errors?.['required']" class="error-text">Quantity is required.</small>
+              </div>
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Category:</label>
-            <input type="text" class="form-control" [(ngModel)]="bookTemp.bookCategory"  id="recipient-name">
+
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="saveBook()"
+              data-bs-dismiss="modal"
+            >
+              Update
+            </button>
           </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Price:</label>
-            <input type="text" class="form-control" [(ngModel)]="bookTemp.bookPrice" id="recipient-name">
-          </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Qty:</label>
-            <input type="text" class="form-control" [(ngModel)]="bookTemp.bookQty"  id="recipient-name">
-          </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="saveBook()" data-bs-dismiss="modal">Update</button>
+        </div>
       </div>
     </div>
-  </div>
-</div>
   </div>
 </body>

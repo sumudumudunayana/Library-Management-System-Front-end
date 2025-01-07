@@ -11,7 +11,11 @@
           [(ngModel)]="book.bookName"
           required
           placeholder="Enter book title"
+          #bookName="ngModel"
         />
+        <div *ngIf="bookName.invalid && bookName.touched">
+          <small *ngIf="bookName.errors?.['required']" class="error-text">Title is required.</small>
+        </div>
       </div>
 
       <div class="form-group">
@@ -22,8 +26,14 @@
           name="bookCategory"
           [(ngModel)]="book.bookCategory"
           required
+          minlength="4"
           placeholder="Enter category"
+          #bookCategory="ngModel"
         />
+        <div *ngIf="bookCategory.invalid && bookCategory.touched">
+          <small *ngIf="bookCategory.errors?.['required']" class="error-text">Category is required.</small>
+          <small *ngIf="bookCategory.errors?.['minlength']" class="error-text">Category must be at least 4 characters long.</small>
+        </div>
       </div>
 
       <div class="form-group">
@@ -34,8 +44,14 @@
           name="bookAuthor"
           [(ngModel)]="book.bookAuthor"
           required
+          minlength="2"
           placeholder="Enter author name"
+          #bookAuthor="ngModel"
         />
+        <div *ngIf="bookAuthor.invalid && bookAuthor.touched">
+          <small *ngIf="bookAuthor.errors?.['required']" class="error-text">Author name is required.</small>
+          <small *ngIf="bookAuthor.errors?.['minlength']" class="error-text">Author name must be at least 2 characters long.</small>
+        </div>
       </div>
 
       <div class="form-group">
@@ -46,8 +62,14 @@
           name="bookPrice"
           [(ngModel)]="book.bookPrice"
           required
+          minlength="3"
           placeholder="Enter price"
+          #bookPrice="ngModel"
         />
+        <div *ngIf="bookPrice.invalid && bookPrice.touched">
+          <small *ngIf="bookPrice.errors?.['required']" class="error-text">Price is required.</small>
+          <small *ngIf="bookPrice.errors?.['minlength']" class="error-text">Price must be at least 3 characters long.</small>
+        </div>
       </div>
 
       <div class="form-group">
@@ -59,7 +81,11 @@
           [(ngModel)]="book.bookQty"
           required
           placeholder="Enter Qty"
+          #bookQty="ngModel"
         />
+        <div *ngIf="bookQty.invalid && bookQty.touched">
+          <small *ngIf="bookQty.errors?.['required']" class="error-text">Qty is required.</small>
+        </div>
       </div>
 
       <button

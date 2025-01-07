@@ -27,12 +27,17 @@ export class AddBooksPageComponent {
 
 
   public onSubmit() {
-    this.http.post("http://localhost:8080/book/add-book",this.book).subscribe((data)=>{
+    if (this.book.bookName && this.book.bookAuthor && this.book.bookCategory && this.book.bookPrice && this.book.bookQty) {
+    this.http.post("http://localhost:8080/book/add-book",this.book).subscribe(()=>{
       this.successAlert();
       this.resetForm();
-    });
-
-  }
+   },
+   (error) => {
+     console.error('Error:', error);
+   }
+ );
+}
+}
 
   resetForm() {
     this.book = {
