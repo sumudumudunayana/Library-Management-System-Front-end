@@ -15,9 +15,9 @@ export class DashBoardComponent {
 
   constructor(private router: Router) {}
 
-  totalBooks = 150;
-  booksBorrowed = 40;
-  booksAvailable = 110;
+  totalBooks = 60;
+  booksBorrowed = 12;
+  booksAvailable = 48;
   mostBorrowedBook = 'The Great Gatsby';
   mostActiveMember = 'John Doe';
   recentActivities = [

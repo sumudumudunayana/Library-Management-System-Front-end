@@ -11,8 +11,14 @@
             name="memberName"
             [(ngModel)]="member.memberName"
             required
+            minlength="2"
             placeholder="Enter your name"
+            #name="ngModel"
           />
+          <div *ngIf="name.invalid && name.touched">
+            <small *ngIf="name.errors?.['required']" class="error-text">Name is required.</small>
+            <small *ngIf="name.errors?.['minlength']" class="error-text">Name must be at least 2 characters long.</small>
+          </div>
         </div>
     
         <div class="form-group">
@@ -23,8 +29,14 @@
             name="memberEmail"
             [(ngModel)]="member.memberEmail"
             required
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
             placeholder="Enter your Email"
+            #email="ngModel"
           />
+          <div *ngIf="email.invalid && email.touched">
+            <small *ngIf="email.errors?.['required']" class="error-text">Email is required.</small>
+            <small *ngIf="email.errors?.['pattern']" class="error-text">Enter a valid email address.</small>
+          </div>
         </div>
     
         <div class="form-group">
@@ -35,8 +47,14 @@
             name="memberPhone"
             [(ngModel)]="member.memberPhone"
             required
+            pattern="^[0-9]{10}$"
             placeholder="Enter phone number"
+            #phone="ngModel"
           />
+          <div *ngIf="phone.invalid && phone.touched">
+            <small *ngIf="phone.errors?.['required']" class="error-text">Phone number is required.</small>
+            <small *ngIf="phone.errors?.['pattern']" class="error-text">Phone number must be 10 digits.</small>
+          </div>
         </div>
     
         <div class="form-group">
@@ -47,8 +65,16 @@
             name="memberAddress"
             [(ngModel)]="member.memberAddress"
             required
+            minlength="5"
+            maxlength="100"
             placeholder="Enter Address"
+            #address="ngModel"
           />
+          <div *ngIf="address.invalid && address.touched">
+            <small *ngIf="address.errors?.['required']" class="error-text">Address is required.</small>
+            <small *ngIf="address.errors?.['minlength']" class="error-text">Address must be at least 5 characters long.</small>
+            <small *ngIf="address.errors?.['maxlength']" class="error-text">Address cannot exceed 100 characters.</small>
+          </div>
         </div>
   
     

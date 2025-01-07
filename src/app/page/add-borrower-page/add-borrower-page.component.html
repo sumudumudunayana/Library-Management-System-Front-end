@@ -10,8 +10,49 @@
           name="membersId"
           [(ngModel)]="borrower.membersId"
           required
+          maxlength="5"
           placeholder="Enter your member ID"
+          #membersId="ngModel"
         />
+        <div *ngIf="membersId.invalid && membersId.touched">
+          <small *ngIf="membersId.errors?.['required']" class="error-text">Member Id is required.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="title">Name</label>
+        <input
+          type="text"
+          id="borrowerName"
+          name="borrowerName"
+          [(ngModel)]="borrower.borrowerName"
+          required
+          minlength="2"
+          placeholder="Enter your member ID"
+          #name="ngModel"
+        />
+        <div *ngIf="name.invalid && name.touched">
+          <small *ngIf="name.errors?.['required']" class="error-text">Name is required.</small>
+          <small *ngIf="name.errors?.['minlength']" class="error-text">Name must be at least 2 characters long.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="title">Contact No</label>
+        <input
+          type="text"
+          id="borrowerContact"
+          name="borrowerContact"
+          [(ngModel)]="borrower.borrowerContact"
+          required
+          pattern="^[0-9]{10}$"
+          placeholder="Enter your member ID"
+          #phone="ngModel"
+        />
+        <div *ngIf="phone.invalid && phone.touched">
+          <small *ngIf="phone.errors?.['required']" class="error-text">Phone number is required.</small>
+          <small *ngIf="phone.errors?.['pattern']" class="error-text">Phone number must be 10 digits.</small>
+        </div>
       </div>
 
       <div class="form-group">
@@ -22,8 +63,13 @@
           name="booksId"
           [(ngModel)]="borrower.booksId"
           required
+          maxlength="5"
           placeholder="Enter the book id"
+          #booksId="ngModel"
         />
+        <div *ngIf="booksId.invalid && booksId.touched">
+          <small *ngIf="booksId.errors?.['required']" class="error-text">Book Id is required.</small>
+        </div>
       </div>
 
       <div class="form-group">
@@ -34,8 +80,13 @@
           name="duration"
           [(ngModel)]="borrower.duration"
           required
+          maxlength="2"
           placeholder="How many days"
+          #duration="ngModel"
         />
+        <div *ngIf="duration.invalid && duration.touched">
+          <small *ngIf="duration.errors?.['required']" class="error-text">Duration is required.</small>
+        </div>
       </div>
 
       <button type="submit"

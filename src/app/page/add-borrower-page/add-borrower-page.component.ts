@@ -17,23 +17,32 @@ export class AddBorrowerPageComponent {
     membersId:'',
     booksId:'',
     duration:'',
+    borrowerName :'',
+    borrowerContact:'',
   };
 
   constructor(private http:HttpClient){}
 
   public onSubmit() {
-    this.http.post("http://localhost:8080/borrower/add-borrower",this.borrower).subscribe((data)=>{
-      this.successAlert();
-      this.resetForm();
-    });
-
-  }
+    if (this.borrower.membersId && this.borrower.booksId && this.borrower.duration && this.borrower.borrowerName && this.borrower.borrowerContact) {
+      this.http.post("http://localhost:8080/borrower/add-borrower",this.borrower).subscribe(() => {
+       this.successAlert();
+       this.resetForm();
+    },
+    (error) => {
+      console.error('Error:', error);
+    }
+  );
+}
+}
 
   resetForm() {
     this.borrower = {
       membersId:'',
       booksId:'',
       duration:'',
+      borrowerName :'',
+    borrowerContact:'',
     };
   }
 

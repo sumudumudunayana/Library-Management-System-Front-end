@@ -110,3 +110,10 @@ h2 {
   background-color: #8a25b9;
   transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
 }
+
+
+.error-text {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}

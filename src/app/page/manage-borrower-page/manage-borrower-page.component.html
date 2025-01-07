@@ -18,6 +18,8 @@
           <th>Count</th>
           <th>Borrower Id</th>
           <th>Member Id</th>
+          <th>Name</th>
+          <th>Contact No</th>
           <th>Book Id</th>
           <th>Duration</th>
           <th>Delete</th>
@@ -29,6 +31,8 @@
           <td>{{ i + 1 }}</td>
           <td>{{ borrower.borrowerId }}</td>
           <td>{{ borrower.membersId }}</td>
+          <td>{{ borrower.borrowerName }}</td>
+          <td>{{ borrower.borrowerContact }}</td>
           <td>{{ borrower.booksId }}</td>
           <td>{{ borrower.duration }}</td>
           <td>
@@ -54,6 +58,14 @@
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Member Id :</label>
             <input type="text" class="form-control" [(ngModel)]="borrowerTemp.membersId"  id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Name :</label>
+            <input type="text" class="form-control" [(ngModel)]="borrowerTemp.borrowerName"  id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Contact No :</label>
+            <input type="text" class="form-control" [(ngModel)]="borrowerTemp.borrowerContact"  id="recipient-name">
           </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Book Id :</label>

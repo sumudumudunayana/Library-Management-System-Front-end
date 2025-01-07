@@ -22,11 +22,17 @@ export class AddMembersPageComponent {
 
   constructor(private http:HttpClient){}
 
-  public onSubmit(){
-    this.http.post("http://localhost:8080/member/add-member",this.member).subscribe((data)=>{
-     this.successAlert();
-      this.resetForm();
-    });
+  public onSubmit() {
+    if (this.member.memberName && this.member.memberEmail && this.member.memberPhone && this.member.memberAddress) {
+      this.http.post('http://localhost:8080/member/add-member', this.member).subscribe(() => {
+            this.successAlert();
+            this.resetForm();
+          },
+          (error) => {
+            console.error('Error:', error);
+          }
+        );
+    }
   }
 
   resetForm(){
