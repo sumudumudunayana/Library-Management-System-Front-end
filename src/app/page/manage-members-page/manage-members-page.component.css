@@ -106,3 +106,9 @@
     color: rgb(255, 255, 255);
     background-color: rgb(193, 131, 235);
   }
+
+  .error-text {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }

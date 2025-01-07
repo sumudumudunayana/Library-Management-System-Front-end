@@ -1,17 +1,17 @@
-
 <body class="background">
   <div class="manage-borrower-container">
     <h2>Manage Borrowers</h2>
 
     <div class="search">
       <input
-      placeholder="Search By Id..."
-      type="text"
-      [(ngModel)]="searchQuery"
-      (keyup.enter)="searchBorrower(searchQuery)" />
-        <button type="submit" (click)="searchBorrower(searchQuery)">Go</button>
-      </div>
-  
+        placeholder="Search By Id..."
+        type="text"
+        [(ngModel)]="searchQuery"
+        (keyup.enter)="searchBorrower(searchQuery)"
+      />
+      <button type="submit" (click)="searchBorrower(searchQuery)">Go</button>
+    </div>
+
     <table>
       <thead>
         <tr>
@@ -36,52 +36,156 @@
           <td>{{ borrower.booksId }}</td>
           <td>{{ borrower.duration }}</td>
           <td>
-            <button (click)="deleteBorrower(borrower.borrowerId)" class="delete-button">Delete</button>
+            <button
+              (click)="deleteBorrower(borrower.borrowerId)"
+              class="delete-button"
+            >
+              Delete
+            </button>
           </td>
           <td>
-            <button (click)="updateBorrower(borrower)" class="update-button" data-bs-toggle="modal" data-bs-target="#exampleModal">Update</button>
+            <button
+              (click)="updateBorrower(borrower)"
+              class="update-button"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              Update
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
-  
+
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Update Borrower
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Member Id :</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="borrowerTemp.membersId"
+                id="recipient-name"
+                required
+                #membersId="ngModel"
+              />
+              <div *ngIf="membersId.invalid && membersId.touched">
+                <small *ngIf="membersId.errors?.['required']" class="error-text">Member id is required.</small>              </div>
+            </div>
 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Update Borrower</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Member Id :</label>
-            <input type="text" class="form-control" [(ngModel)]="borrowerTemp.membersId"  id="recipient-name">
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Name :</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="borrowerTemp.borrowerName"
+                id="recipient-name"
+                required
+                minlength="2"
+                #borrowerName="ngModel"
+              />
+              <div *ngIf="borrowerName.invalid && borrowerName.touched">
+                <small *ngIf="borrowerName.errors?.['required']" class="error-text">Name is required.</small>
+                <small *ngIf="borrowerName.errors?.['minlength']" class="error-text">Name must be at least 2 characters long.</small>
+              </div>
+            </div>
+
+
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Contact No :</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="borrowerTemp.borrowerContact"
+                id="recipient-name"
+                required
+                pattern="[0-9]{10}"
+                #borrowerContact="ngModel"
+              />
+              <div *ngIf="borrowerContact.invalid && borrowerContact.touched">
+                <small *ngIf="borrowerContact.errors?.['required']" class="error-text">Phone number is required.</small>
+                <small *ngIf="borrowerContact.errors?.['pattern']" class="error-text">Phone number must be 10 digits.</small>
+              </div>
+            </div>
+
+
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Book Id :</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="borrowerTemp.booksId"
+                id="recipient-name"
+                required
+                maxlength="5"
+                #booksId="ngModel"
+              />
+              <div *ngIf="booksId.invalid && booksId.touched">
+                <small *ngIf="booksId.errors?.['required']" class="error-text">Book Id is required.</small>
+                <small *ngIf="booksId.errors?.['maxlength']" class="error-text">Book Id cannot exceed 5 characters.</small>
+              </div>
+            </div>
+
+
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Duration :</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="borrowerTemp.duration"
+                id="recipient-name"
+                required
+                maxlength="2"
+                #duration="ngModel"
+              />
+              <div *ngIf="duration.invalid && duration.touched">
+                <small *ngIf="duration.errors?.['required']" class="error-text">Duration is required.</small>
+                <small *ngIf="duration.errors?.['maxlength']" class="error-text">Duration cannot exceed 2 characters.</small>
+              </div>
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Name :</label>
-            <input type="text" class="form-control" [(ngModel)]="borrowerTemp.borrowerName"  id="recipient-name">
+
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="saveBorrower()"
+              data-bs-dismiss="modal"
+            >
+              Update
+            </button>
           </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Contact No :</label>
-            <input type="text" class="form-control" [(ngModel)]="borrowerTemp.borrowerContact"  id="recipient-name">
-          </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Book Id :</label>
-            <input type="text" class="form-control" [(ngModel)]="borrowerTemp.booksId" id="recipient-name">
-          </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Duration :</label>
-            <input type="text" class="form-control" [(ngModel)]="borrowerTemp.duration"  id="recipient-name">
-          </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="saveBorrower()" data-bs-dismiss="modal">Update</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-</div>
 </body>

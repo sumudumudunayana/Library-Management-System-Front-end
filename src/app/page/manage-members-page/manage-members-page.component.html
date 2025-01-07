@@ -1,17 +1,17 @@
-
 <body class="background">
   <div class="manage-member-container">
     <h2>Manage Members</h2>
 
     <div class="search">
       <input
-      placeholder="Search By Id..."
-      type="text"
-      [(ngModel)]="searchQuery"
-      (keyup.enter)="searchMember(searchQuery)" />
-        <button type="submit" (click)="searchMember(searchQuery)">Go</button>
-      </div>
-  
+        placeholder="Search By Id..."
+        type="text"
+        [(ngModel)]="searchQuery"
+        (keyup.enter)="searchMember(searchQuery)"
+      />
+      <button type="submit" (click)="searchMember(searchQuery)">Go</button>
+    </div>
+
     <table>
       <thead>
         <tr>
@@ -34,48 +34,143 @@
           <td>{{ member.memberPhone }}</td>
           <td>{{ member.memberAddress }}</td>
           <td>
-            <button (click)="deleteMember(member.memberId)" class="delete-button">Delete</button>
+            <button
+              (click)="deleteMember(member.memberId)"
+              class="delete-button"
+            >
+              Delete
+            </button>
           </td>
           <td>
-            <button (click)="updateMember(member)" class="update-button" data-bs-toggle="modal" data-bs-target="#exampleModal">Update</button>
+            <button
+              (click)="updateMember(member)"
+              class="update-button"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              Update
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
-  
+
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Update Member
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Name:</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="memberTemp.memberName"
+                id="recipient-name"
+                required
+                minlength="2"
+                #memberName="ngModel"
+              />
+              <div *ngIf="memberName.invalid && memberName.touched">
+                <small *ngIf="memberName.errors?.['required']" class="error-text">Name is required.</small>
+                <small *ngIf="memberName.errors?.['minlength']" class="error-text">Name must be at least 2 characters long.</small>
+              </div>
+            </div>
 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Update Member</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Name:</label>
-            <input type="text" class="form-control" [(ngModel)]="memberTemp.memberName"  id="recipient-name">
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Email:</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="memberTemp.memberEmail"
+                id="recipient-name"
+                required
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                #memberEmail="ngModel"
+              />
+              <div *ngIf="memberEmail.invalid && memberEmail.touched">
+                <small *ngIf="memberEmail.errors?.['required']" class="error-text">Email is required.</small>
+                <small *ngIf="memberEmail.errors?.['pattern']" class="error-text">Enter a valid email address.</small>
+              </div>
+            </div>
+
+
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Phone Number:</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="memberTemp.memberPhone"
+                id="recipient-name"
+                required
+                pattern="[0-9]{10}"
+                #memberPhone="ngModel"
+              />
+              <div *ngIf="memberPhone.invalid && memberPhone.touched">
+                <small *ngIf="memberPhone.errors?.['required']" class="error-text">Phone number is required.</small>
+                <small *ngIf="memberPhone.errors?.['pattern']" class="error-text">Phone number must be 10 digits.</small>
+              </div>
+            </div>
+
+
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Address:</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="memberTemp.memberAddress"
+                id="recipient-name"
+                required
+                minlength="5"
+                maxlength="100"
+                #memberAddress="ngModel"
+              />
+              <div *ngIf="memberAddress.invalid && memberAddress.touched">
+                <small *ngIf="memberAddress.errors?.['required']" class="error-text">Address is required.</small>
+                <small *ngIf="memberAddress.errors?.['minlength']" class="error-text">Address must be at least 5 characters long.</small>
+                <small *ngIf="memberAddress.errors?.['maxlength']" class="error-text">Address cannot exceed 100 characters.</small>
+              </div>
+            </div>
+
+
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                (click)="saveMember()"
+                data-bs-dismiss="modal"
+              >
+                Update
+              </button>
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Email:</label>
-            <input type="text" class="form-control" [(ngModel)]="memberTemp.memberEmail" id="recipient-name">
-          </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Phone Number:</label>
-            <input type="text" class="form-control" [(ngModel)]="memberTemp.memberPhone"  id="recipient-name">
-          </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Address:</label>
-            <input type="text" class="form-control" [(ngModel)]="memberTemp.memberAddress" id="recipient-name">
-          </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="saveMember()" data-bs-dismiss="modal">Update</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-</div>
-</div>
 </body>

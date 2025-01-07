@@ -69,6 +69,7 @@
         />
         <div *ngIf="booksId.invalid && booksId.touched">
           <small *ngIf="booksId.errors?.['required']" class="error-text">Book Id is required.</small>
+          <small *ngIf="booksId.errors?.['maxlength']" class="error-text">Book Id must be under 5 digits.</small>
         </div>
       </div>
 
